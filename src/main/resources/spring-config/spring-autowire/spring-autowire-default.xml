@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--默认的自动装配类型-->
+    <bean id="myFavoriteAutowireType" class="pers.hanchao.autowire.MyFavoriteAutowireType" autowire="no" >
+        <property name="defaultAutoWire" ref="defaultAutoWire"/>
+    </bean>
+    <bean id="defaultAutoWire" class="pers.hanchao.autowire.DefaultAutoWire"/>
+</beans>

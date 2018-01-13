@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--通过settr注入-->
+    <!--<bean id="myFavoriteAutowireType" class="pers.hanchao.loosecoupling.MyFavoriteAutowireType">-->
+        <!--<property name="fruit" ref="myDay"/>-->
+    <!--</bean>-->
+
+    <bean id="myFavoriteAutowireType" class="pers.hanchao.constructor.MyFavoriteFruit">
+        <constructor-arg ref="orange"/>
+    </bean>
+    <bean id="myDay" class="pers.hanchao.constructor.Apple"/>
+    <bean id="orange" class="pers.hanchao.constructor.Orange"/>
+</beans>

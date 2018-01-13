@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--开启注解-->
+    <context:annotation-config/>
+    <!--开启@Component等注解的自动扫描-->
+    <context:component-scan base-package="pers.hanchao.*"/>
+
+    <!--自定义的db拦截器-->
+    <bean id="myDbInterceptor" class="pers.hanchao.aop.MyDbInterceptor"/>
+
+    <!--定义通过方法名称匹配的切入点指示器-->
+    <bean id="dbAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <!--映射一种BeanName-->
+        <!--<property name="mappedName" value="aopSave"/>-->
+        <!--映射多种BeanNames-->
+        <property name="mappedNames">
+            <list>
+                <value>*Save</value>
+                <value>*Bc</value>
+            </list>
+        </property>
+        <property name="advice" ref="myDbInterceptor"/>
+    </bean>
+
+    <!--定义通过Bean名称生成自动代理的创造器-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="*Service"/>
+        <property name="interceptorNames" value="dbAdvisor"/>
+    </bean>
+</beans>
