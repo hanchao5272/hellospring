@@ -63,12 +63,14 @@ public class Question implements Serializable{
     public Question(String title,int score,String answer){
         this(0,title,score,answer);
     }
+
     @Override
-    public String toString(){
-        return "question=[id:" + id
-                + ",title:" + title
-                + ",score:" + score
-                + ",answer:" + answer
-                + "]";
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", score=" + score +
+                ", answer='" + answer + '\'' +
+                '}';
     }
 }
